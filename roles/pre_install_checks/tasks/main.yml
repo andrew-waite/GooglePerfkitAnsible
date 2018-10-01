@@ -1,0 +1,10 @@
+---
+  - name: Check if unzip package is installed
+    shell: yum list installed unzip | grep unzip | awk '{print $1}' | cut -d'.' -f1
+    register: status
+  - fail:
+      msg: "Unzip command is not installed"
+    when: status.stdout != "unzip"
+  - name: Install unzip package
+    shell: yum install unzip -y
+    when: status.stdout != "unzip"

@@ -1,0 +1,8 @@
+[remoteservers]
+178.128.78.211
+  
+[remoteservers:vars]
+ansible_user = root
+ansible_connection = ssh
+ansible_ssh_port = 22
+ansible_ssh_pass = @ndrew123!!

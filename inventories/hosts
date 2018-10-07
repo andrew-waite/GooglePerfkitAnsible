@@ -3,7 +3,7 @@
 
 [windows_servers]
 
-[remoteservers:vars]
+[linux_servers:vars]
 ansible_user = root
 ansible_connection = ssh
 ansible_ssh_port = 22

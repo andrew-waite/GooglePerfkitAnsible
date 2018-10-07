@@ -7,4 +7,4 @@ aws_keys:
 azure_keys:
   username: abcde@domain.com.au
   password: abcde
-openstack_keys:
+openstack: passwords/default_rc.sh

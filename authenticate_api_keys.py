@@ -60,6 +60,15 @@ class api_key_reader():
 			subprocess.call('azure provider register Microsoft.Compute', shell=True)
 			subprocess.call('azure provider register Microsoft.Network', shell=True)
 
+		#Openstack configure
+		try:
+			if self.config['openstack'] is None: # The variable
+				print('The key is empty skipping')
+		except NameError:
+			print ("The openstack path has not been set. Skipping this step...")
+		else:
+			command = 'source ' + self.config['openstack']
+
 def main():
 	perfkitRun = api_key_reader()
 	perfkitRun.runAuthCommands()

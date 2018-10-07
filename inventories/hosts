@@ -1,6 +1,8 @@
-[remoteservers]
+[linux_servers]
 178.128.78.211
-  
+
+[windows_servers]
+
 [remoteservers:vars]
 ansible_user = root
 ansible_connection = ssh

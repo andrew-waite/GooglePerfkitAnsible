@@ -1,0 +1,10 @@
+---
+digital_ocean_key: "56dc63d1c1d066acbc337e23aa284f1eb1b7000036623cf3b2796a431c734ebd"
+aws_keys:
+  aws_access_key_id: "abcde"
+  aws_secret_access_key: "abcde"
+  default_region: "us-east-1a"
+azure_keys:
+  username: abcde@domain.com.au
+  password: abcde
+openstack_keys:

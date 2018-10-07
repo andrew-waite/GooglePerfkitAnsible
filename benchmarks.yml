@@ -1,0 +1,15 @@
+core_config:
+  json_path: /opt/results/
+  log_path: /opt/logs/
+  perfkit_path: /opt/googleperfkit/
+
+benchmarks:
+  - ping
+
+cloud_config:
+  DigitalOcean:
+    flavor_name: 4gb
+    options:
+      machine_type: 4gb
+      zones: sfo2
+      cloud: DigitalOcean

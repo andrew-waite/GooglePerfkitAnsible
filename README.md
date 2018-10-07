@@ -15,7 +15,11 @@ aws configure set a a us-eas a
 
 aws configure list
 
-The user needs todo this one manually as you have to login to microsofts website and authenticate with a randomly generated token, we can't script this.
+Below command method doesnt support 2fa
+
+azure login -u <username> -p <password>
+
+This one does support 2fa 
 
 azure login
 

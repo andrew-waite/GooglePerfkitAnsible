@@ -43,6 +43,18 @@
       src: https://github.com/digitalocean/doctl/releases/download/v1.10.0/doctl-1.10.0-linux-amd64.tar.gz
       dest: /usr/local/bin
       remote_src: yes
+  - name: Patch open stack requirements file
+    lineinfile:
+      path: /opt/googleperfkit/requirements.txt
+      regexp: "{{ item.old }}"
+      line: "{{ item.new }}"
+      backup: yes
+    with_items:
+    - { old: 'PyYAML==3.12', new: 'PyYAML==3.13' }
+  - name: Install colorama patch newer version
+    command: pip install colorama==0.3.9
+  - name: Install python-devel
+    command: yum install python-devel
   - name: Install requirements via pip
     command: pip install -r {{ item }}
     args:
@@ -52,12 +64,12 @@
       - perfkitbenchmarker/providers/aws/requirements.txt
     become: true
   - name: API key configuration and validation
-    command: python ../../../authenticate_api_keys.py
+    command: python {{ playbook_dir }}/../authenticate_api_keys.py
   - name: Run bencmarks on digitalocean
-    command: python ../../../bencmarks.py --cloud_provider DigitalOcean
+    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider DigitalOcean
   - name: Run bencmarks on aws
-    command: python ../../../bencmarks.py --cloud_provider AWS
+    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider AWS
   - name: Run bencmarks on azure
-    command: python ../../../bencmarks.py --cloud_provider Azure
+    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider Azure
   - name: Run bencmarks on openstack
-    command: python ../../../bencmarks.py --cloud_provider openstack
+    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider openstack

@@ -1,10 +1,10 @@
 ---
 digital_ocean_key: ""
 aws_keys:
-  aws_access_key_id: "abcde"
-  aws_secret_access_key: "abcde"
-  default_region: "us-east-1a"
+  aws_access_key_id:
+  aws_secret_access_key:
+  default_region:
 azure_keys:
-  username: abcde@domain.com.au
-  password: abcde
-openstack: passwords/default_rc.sh
+  username:
+  password:
+openstack:

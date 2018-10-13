@@ -1,4 +1,4 @@
-al---
+---
   - include_role:
       name: pre_install_checks
   - name: Check if google perf kit is already installed
@@ -61,6 +61,8 @@ al---
       backup: yes
     with_items:
     - { old: 'PyYAML==3.12', new: 'PyYAML==3.13' }
+  - name: Uninstall yum managed PyYAML version
+    command: yum remove PyYAML -y
   - name: Install colorama patch newer version
     command: pip install colorama==0.3.9
   - name: Install python-devel

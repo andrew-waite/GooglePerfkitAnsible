@@ -15,11 +15,11 @@ class api_key_reader():
 		my_path = os.path.abspath(os.path.dirname(__file__))
 		path = os.path.join(my_path, 'passwords/keys.yml')
 		print(path)
-			with open(path, 'r') as stream:
-				try:
-					return yaml.load(stream)
-				except yaml.YAMLError as exc:
-					print(exc)
+		with open(path, 'r') as stream:
+			try:
+				return yaml.load(stream)
+			except yaml.YAMLError as exc:
+				print(exc)
 
 	def runAuthCommands(self):
 		#Digital Ocean configure

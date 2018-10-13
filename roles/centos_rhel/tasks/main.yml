@@ -1,4 +1,4 @@
----
+al---
   - include_role:
       name: pre_install_checks
   - name: Check if google perf kit is already installed
@@ -29,12 +29,22 @@
     with_items:
       - /opt/results
       - /opt/logs
+  - name: Enable epel-release
+    command: yum install epel-release -y
+  - name: Install npm
+    command: yum install npm -y
+  - name: Install GCC
+    command: yum install gcc -y
+  - name: Install python pip
+    command: yum install python-pip -y
     become: yes
   - name: Upgrade pip and install pip packages
     pip:
       name: "pip"
       state: latest
     become: true
+  - name: Uninstall incompatiable pip packages
+    command: pip uninstall pyOpenSSL cryptography
   - name: Install Azure client
     shell: npm install azure-cli@0.10.4 -g
     become: yes
@@ -54,7 +64,7 @@
   - name: Install colorama patch newer version
     command: pip install colorama==0.3.9
   - name: Install python-devel
-    command: yum install python-devel
+    command: yum install python-devel -y
   - name: Install requirements via pip
     command: pip install -r {{ item }}
     args:
@@ -63,13 +73,5 @@
       - perfkitbenchmarker/providers/openstack/requirements.txt
       - perfkitbenchmarker/providers/aws/requirements.txt
     become: true
-  - name: API key configuration and validation
+  - name: API key configuration and validation and run benchmarks
     command: python {{ playbook_dir }}/../authenticate_api_keys.py
-  - name: Run bencmarks on digitalocean
-    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider DigitalOcean
-  - name: Run bencmarks on aws
-    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider AWS
-  - name: Run bencmarks on azure
-    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider Azure
-  - name: Run bencmarks on openstack
-    command: python {{ playbook_dir }}/../bencmarks.py --cloud_provider openstack

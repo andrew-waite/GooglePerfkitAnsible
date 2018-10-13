@@ -39,13 +39,13 @@ class api_key_reader():
 		except NameError:
 			print ("The aws key is not set. Skipping this step...")
 		else:
-			command0 = 'aws configure set aws_access_key_id ' + self.config['aws_key']['aws_access_key_id']
-			command1 = 'aws configure set aws_secret_access_key ' + self.config['aws_key']['aws_secret_access_key']
-			command2 = 'aws configure set default.region ' + self.config['aws_key']['default_region']
+			command_one = 'aws configure set aws_access_key_id ' + self.config['aws_keys']['aws_access_key_id']
+			command_two = 'aws configure set aws_secret_access_key ' + self.config['aws_keys']['aws_secret_access_key']
+			command_three = 'aws configure set default.region ' + self.config['aws_keys']['default_region']
 
-			subprocess.call(command0, shell=True)
-			subprocess.call(command1, shell=True)
-			subprocess.call(command2, shell=True)
+			subprocess.call(command_one, shell=True)
+			subprocess.call(command_two, shell=True)
+			subprocess.call(command_three, shell=True)
 
 		#Azure configure
 		try:
@@ -68,6 +68,21 @@ class api_key_reader():
 			print ("The openstack path has not been set. Skipping this step...")
 		else:
 			command = 'source ' + self.config['openstack']
+			subprocess.call(command, shell=True)
+
+	def runBenchmarks(self):
+		if self.config['digital_ocean_key'] is not None:
+			command = 'python bencmarks.py --cloud_provider DigitalOcean'
+			subprocess.call(command, shell=True)
+		if self.config['aws_keys']['aws_access_key_id'] is not None:
+			command = 'python bencmarks.py --cloud_provider AWS'
+			subprocess.call(command, shell=True)
+		if self.config['azure_keys']['username'] is not None:
+			command = 'python bencmarks.py --cloud_provider Azure'
+			subprocess.call(command, shell=True)
+		if self.config['openstack'] is not None:
+			command = 'python bencmarks.py --cloud_provider openstack'
+			subprocess.call(command, shell=True)
 
 def main():
 	perfkitRun = api_key_reader()

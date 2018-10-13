@@ -70,16 +70,16 @@ class api_key_reader():
 
 	def runBenchmarks(self):
 		if self.config['digital_ocean_key'] is not None:
-			command = 'python bencmarks.py --cloud_provider DigitalOcean'
+			command = 'python benchmarks.py --cloud_provider DigitalOcean'
 			subprocess.call(command, shell=True)
 		if self.config['aws_keys']['aws_access_key_id'] is not None:
-			command = 'python bencmarks.py --cloud_provider AWS'
+			command = 'python benchmarks.py --cloud_provider AWS'
 			subprocess.call(command, shell=True)
 		if self.config['azure_keys']['username'] is not None:
-			command = 'python bencmarks.py --cloud_provider Azure'
+			command = 'python benchmarks.py --cloud_provider Azure'
 			subprocess.call(command, shell=True)
 		if self.config['openstack'] is not None:
-			command = 'python bencmarks.py --cloud_provider openstack'
+			command = 'python benchmarks.py --cloud_provider openstack'
 			subprocess.call(command, shell=True)
 
 def main():

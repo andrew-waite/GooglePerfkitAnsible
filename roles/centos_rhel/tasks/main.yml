@@ -5,6 +5,8 @@
     stat:
       path: /opt/googleperfkit
     register: application_directory
+  - name: Install unzip util
+    command: yum install unzip -y
   - name: Download master branch of GooglePerfkit and unzip
     unarchive:
       src: https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/archive/master.zip
@@ -62,7 +64,7 @@
     with_items:
     - { old: 'PyYAML==3.12', new: 'PyYAML==3.13' }
   - name: Install colorama patch newer version
-    command: pip install colorama==0.3.9
+    command: pip install colorama==0.3.7
   - name: Install python-devel
     command: yum install python-devel -y
   - name: Install requirements via pip

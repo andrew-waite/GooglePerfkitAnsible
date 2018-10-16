@@ -5,8 +5,6 @@
     stat:
       path: /opt/googleperfkit
     register: application_directory
-  - name: Install unzip util
-    command: yum install unzip -y
   - name: Download master branch of GooglePerfkit and unzip
     unarchive:
       src: https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/archive/master.zip

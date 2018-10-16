@@ -72,6 +72,10 @@
     with_items:
       - perfkitbenchmarker/providers/openstack/requirements.txt
       - perfkitbenchmarker/providers/aws/requirements.txt
+  - name: Removed incompatible colorama packages version  4.0
+    command: rm -rf /usr/lib/python2.7/site-packages/colorama-0.4.0.dist-info/
+  - name: Removed incompatible colorama packages version  3.8
+    command: rm -rf /usr/lib/python2.7/site-packages/colorama-0.3.9.dist-info/
     become: true
   - name: API key configuration and validation and run benchmarks
     command: python {{ playbook_dir }}/../authenticate_api_keys.py

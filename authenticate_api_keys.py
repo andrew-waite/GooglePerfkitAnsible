@@ -25,7 +25,7 @@ class api_key_reader():
 		#Digital Ocean configure
 		try:
 			if self.config['digital_ocean_key'] is None: # The variable
-				print('The key is empty skipping')
+				print('The digital ocean key is empty skipping')
 			else:
 				command = 'doctl auth init -t ' + self.config['digital_ocean_key']
 				result = subprocess.call(command, shell=True)
@@ -35,7 +35,7 @@ class api_key_reader():
 		#AWS configure
 		try:
 			if self.config['aws_keys']['aws_access_key_id'] is None: # The variable
-				print('The key is empty skipping')
+				print('The aws key is empty skipping')
 			else:
 				command_one = 'aws configure set aws_access_key_id ' + self.config['aws_keys']['aws_access_key_id']
 				command_two = 'aws configure set aws_secret_access_key ' + self.config['aws_keys']['aws_secret_access_key']
@@ -49,7 +49,7 @@ class api_key_reader():
 		#Azure configure
 		try:
 			if self.config['azure_keys']['username'] is None: # The variable
-				print('The key is empty skipping')
+				print('The azure key is empty skipping')
 			else:
 				command = 'azure login -u ' + self.config['azure_keys']['username'] + ' -p ' + self.config['azure_keys']['password']
 				subprocess.call(command, shell=True)
@@ -62,7 +62,7 @@ class api_key_reader():
 		#Openstack configure
 		try:
 			if self.config['openstack'] is None: # The variable
-				print('The key is empty skipping')
+				print('The openstack key is empty skipping')
 			else:
 				command = 'source ' + self.config['openstack']
 		except NameError:

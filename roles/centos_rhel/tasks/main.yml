@@ -37,10 +37,6 @@
       name: "pip"
       state: latest
     become: true
-  - name: Uninstall PyYAML
-    command: yum remove PyYAML -y
-  - name: Uninstall incompatiable pip packages
-    command: pip uninstall --yes -r {{ playbook_dir }}/../uninstall_azure_cli_packages.txt
   - name: Install Azure client
     command: pip install azure-cli
     become: yes

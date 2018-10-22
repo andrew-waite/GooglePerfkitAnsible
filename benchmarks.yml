@@ -3,6 +3,11 @@ core_config:
   log_path: /opt/logs/
   perfkit_path: /opt/googleperfkit/
 
+elasticsearch:
+  url: ~
+  index_name: ~
+  type_name: ~
+
 benchmarks:
   - ping
 

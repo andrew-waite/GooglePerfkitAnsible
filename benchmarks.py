@@ -17,6 +17,7 @@ class googlePerfKit():
     def __init__(self):
         self.config = self.import_yaml()
         self.core_config = self.config['core_config']
+        self.elastic_search = self.config['elasticsearch']
         self.cloud_config = self.config['cloud_config'][ARGS.cloud_provider]
         self.benchmarks = self.config['benchmarks']
 
@@ -51,11 +52,22 @@ class googlePerfKit():
         logPath = logPath + '.' + self.get_date() + '.' + 'results.json'
         return logPath
 
+    def format_elastic_search(self):
+        elasticSearchUrl = '--es_uri=' \
+                            + self.elastic_search['url'] \
+                            + ' --es_index=' \
+                            + self.elastic_search['index_name'] \
+                            + ' --es_type=' \
+                            + self.elastic_search['type_name']
+        return elasticSearchUrl
+
     def build_base_command(self, benchmark, mode=None, workload=None, storage_type=None, storage_tier=None):
 
         command = './pkb.py ' \
                   + '--benchmarks=' + benchmark + ' ' \
-                  + self.format_results_log(benchmark, mode, workload)
+                  + self.format_results_log(benchmark, mode, workload) \
+                  + ' ' \
+                  + format_elastic_search()
         if mode:
             command = command + ' --' + mode + '=' + workload
         for option, value in self.cloud_config['options'].iteritems():

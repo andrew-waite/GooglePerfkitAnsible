@@ -14,12 +14,6 @@
   - name: Rename downloaded archive
     command: mv /opt/PerfKitBenchmarker-master /opt/googleperfkit
     when: application_directory.stat.exists == false
-  - copy:
-      src: '{{ playbook_dir }}/../benchmarks.yml'
-      dest: /root/benchmarks.yml
-  - copy:
-      src: '{{ playbook_dir }}/../benchmarks.py'
-      dest: /root/benchmarks.py
   - name: Create result and log directories
     file:
       path: "{{ item }}"
@@ -43,10 +37,12 @@
       name: "pip"
       state: latest
     become: true
+  - name: Uninstall PyYAML
+    command: yum remove PyYAML -y
   - name: Uninstall incompatiable pip packages
-    command: pip uninstall --yes pyOpenSSL cryptography
+    command: pip uninstall --yes -r {{ playbook_dir }}/../uninstall_azure_cli_packages.txt
   - name: Install Azure client
-    command: yes | pip install azure-cli
+    command: pip install azure-cli
     become: yes
   - name: Install doctl for digital ocean
     unarchive:

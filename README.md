@@ -33,3 +33,6 @@ Finally, make sure Azure is in Resource Management mode and that your account is
 $ azure config mode arm
 $ azure provider register Microsoft.Compute
 $ azure provider register Microsoft.Network
+
+yum install epel-release
+yum install https://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/ansible-2.6.5-1.el7.ans.noarch.rpm

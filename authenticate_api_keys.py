@@ -51,11 +51,10 @@ class api_key_reader():
 			if self.config['azure_keys']['username'] is None: # The variable
 				print('The azure key is empty skipping')
 			else:
-				command = 'azure login -u ' + self.config['azure_keys']['username'] + ' -p ' + self.config['azure_keys']['password']
+				command = 'az login -u ' + self.config['azure_keys']['username'] + ' -p ' + self.config['azure_keys']['password']
 				subprocess.call(command, shell=True)
-				subprocess.call('azure config mode arm', shell=True)
-				subprocess.call('azure provider register Microsoft.Compute', shell=True)
-				subprocess.call('azure provider register Microsoft.Network', shell=True)
+				command = 'az account set --subscription ' + self.config['azure_keys']['subscription']
+				subprocess.call(command, shell=True)
 		except NameError:
 			print ("There was an error in getting the keys for azure.")
 

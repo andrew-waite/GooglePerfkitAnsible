@@ -7,4 +7,5 @@ aws_keys:
 azure_keys:
   username: ~
   password: ~
+  subscription: ~
 openstack: ~

@@ -4,6 +4,7 @@ core_config:
   perfkit_path: /opt/googleperfkit/
 
 elasticsearch:
+  enabled: false
   url: ~
   index_name: ~
   type_name: ~

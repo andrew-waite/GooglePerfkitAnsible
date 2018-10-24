@@ -78,7 +78,7 @@ class api_key_reader():
 			command = 'python benchmarks.py --cloud_provider Azure'
 			subprocess.call(command, shell=True)
 		if self.config['openstack'] is not None:
-			command = 'python benchmarks.py --cloud_provider openstack'
+			command = 'python benchmarks.py --cloud_provider OpenStack'
 			subprocess.call(command, shell=True)
 
 def main():

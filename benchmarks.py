@@ -57,9 +57,7 @@ class googlePerfKit():
             elasticSearchUrl = '--es_uri=' \
                                 + self.elastic_search['url'] \
                                 + ' --es_index=' \
-                                + self.elastic_search['index_name'] \
-                                + ' --es_type=' \
-                                + self.elastic_search['type_name']
+                                + self.elastic_search['index_name']
             return elasticSearchUrl
         else:
             return ''
@@ -79,7 +77,7 @@ class googlePerfKit():
             command = command + (' --' + str(option) + '=' + str(value))
         return command
 
-    def run_benchmarks_list(self, BENCHMARKGROUP):
+    def run_benchmarks_list(self):
 
         benchmarks = []
         for benchmarkName in self.benchmarks:
@@ -89,21 +87,19 @@ class googlePerfKit():
     def run_benchmarks(self):
 
         env = os.environ.copy()
-        for benchmark in self.benchmarks:
-            for command in self.run_benchmarks_list(benchmark):
-                metaCommand = command + ' --metadata="cloud_provider:' + ARGS.cloud_provider \
-                        + ',machine_type:' + self.cloud_config['flavor_name'] \
-                        + ',region:' + self.cloud_config['options']['zones'] + '"'
-                print(metaCommand)
-                result = subprocess.Popen(metaCommand, shell=True, stdout=subprocess.PIPE, cwd=self.core_config['perfkit_path'], env=env)
-                print(result.stdout.read())
-                self.write_log(result.stdout.read())
+        for command in self.run_benchmarks_list():
+            metaCommand = command + ' --metadata="cloud_provider:' + ARGS.cloud_provider \
+                    + ',machine_type:' + self.cloud_config['flavor_name'] \
+                    + ',region:' + self.cloud_config['options']['zones'] + '"'
+            print(metaCommand)
+            result = subprocess.Popen(metaCommand, shell=True, stdout=subprocess.PIPE, cwd=self.core_config['perfkit_path'], env=env)
+            print(result.stdout.read())
+            self.write_log(result.stdout.read())
 
 def main():
     perfkitRun = googlePerfKit()
     print(perfkitRun);
     print ("Started the run at : " + perfkitRun.get_date() + "on cloud: " + ARGS.cloud_provider)
-    perfkitRun.run_benchmarks()
     print(perfkitRun.run_benchmarks());
     print ("Finished the run at : " + perfkitRun.get_date())
 

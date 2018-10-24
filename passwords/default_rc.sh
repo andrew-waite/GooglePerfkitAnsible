@@ -1,7 +1,7 @@
-​export OS_USERNAME=username
-​export OS_PASSWORD=password
-​export OS_TENANT_NAME=projectName
-​export OS_AUTH_URL=https://identityHost:portNumber/v2.0
+​export OS_USERNAME=admin
+​export OS_PASSWORD=admin
+​export OS_TENANT_NAME=admin
+​export OS_AUTH_URL=https://104.248.210.21:5000/v2.0
 ​# The following lines can be omitted
-​export OS_TENANT_ID=tenantIDString
-​export OS_REGION_NAME=regionName
+​#export OS_TENANT_ID=tenantIDString
+​#export OS_REGION_NAME=regionName

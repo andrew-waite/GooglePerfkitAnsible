@@ -7,7 +7,6 @@ elasticsearch:
   enabled: false
   url: ~
   index_name: ~
-  type_name: ~
 
 benchmarks:
   - ping
